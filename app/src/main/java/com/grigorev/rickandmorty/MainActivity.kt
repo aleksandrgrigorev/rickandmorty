@@ -2,14 +2,12 @@ package com.grigorev.rickandmorty
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import androidx.fragment.app.commit
-import androidx.navigation.findNavController
+import androidx.navigation.Navigation
 import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.grigorev.rickandmorty.databinding.ActivityMainBinding
-import com.grigorev.rickandmorty.ui.characters.CharactersFragment
 
 
 class MainActivity : AppCompatActivity() {
@@ -24,7 +22,7 @@ class MainActivity : AppCompatActivity() {
 
         val navView: BottomNavigationView = binding.navView
 
-        val navController = findNavController(R.id.nav_host_fragment_activity_main)
+        val navController = Navigation.findNavController(this, R.id.nav_host_fragment_activity_main)
 
         val appBarConfiguration = AppBarConfiguration(
             setOf(
@@ -34,11 +32,5 @@ class MainActivity : AppCompatActivity() {
 
         setupActionBarWithNavController(navController, appBarConfiguration)
         navView.setupWithNavController(navController)
-
-        if (savedInstanceState == null) {
-            supportFragmentManager.commit {
-                add(R.id.navigation_characters, CharactersFragment())
-            }
-        }
     }
 }

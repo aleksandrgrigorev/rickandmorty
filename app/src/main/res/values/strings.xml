@@ -3,4 +3,10 @@
     <string name="title_characters">Characters</string>
     <string name="title_locations">Locations</string>
     <string name="title_episodes">Episodes</string>
+    <string name="name">Name: %1$s</string>
+    <string name="species">Species: %1$s</string>
+    <string name="status">Status: %1$s</string>
+    <string name="gender">Gender: %1$s</string>
+    <string name="character_image">Character image</string>
+
 </resources>

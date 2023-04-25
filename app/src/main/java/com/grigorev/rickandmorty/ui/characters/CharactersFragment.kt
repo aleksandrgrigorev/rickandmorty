@@ -4,39 +4,29 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.ViewModelProvider
+import androidx.fragment.app.activityViewModels
+import androidx.lifecycle.lifecycleScope
 import com.grigorev.rickandmorty.databinding.FragmentCharactersBinding
+import kotlinx.coroutines.launch
 
 class CharactersFragment : Fragment() {
 
-    private var _binding: FragmentCharactersBinding? = null
-
-    // This property is only valid between onCreateView and
-    // onDestroyView.
-    private val binding get() = _binding!!
+    private val charactersViewModel: CharactersViewModel by activityViewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        val charactersViewModel =
-            ViewModelProvider(this).get(CharactersViewModel::class.java)
+        val binding = FragmentCharactersBinding.inflate(inflater, container, false)
 
-        _binding = FragmentCharactersBinding.inflate(inflater, container, false)
-        val root: View = binding.root
-
-        val textView: TextView = binding.textHome
-        charactersViewModel.text.observe(viewLifecycleOwner) {
-            textView.text = it
+        lifecycleScope.launch {
+            charactersViewModel.data.observe(viewLifecycleOwner) {
+                val adapter = context?.let { context -> CharactersAdapter(it.characters, context) }
+                binding.charactersList.adapter = adapter
+            }
         }
-        return root
-    }
-
-    override fun onDestroyView() {
-        super.onDestroyView()
-        _binding = null
+        return binding.root
     }
 }
