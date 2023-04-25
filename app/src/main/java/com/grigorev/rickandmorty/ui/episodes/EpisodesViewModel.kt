@@ -1,13 +1,31 @@
 package com.grigorev.rickandmorty.ui.episodes
 
+import android.app.Application
+import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
+import androidx.lifecycle.asLiveData
+import androidx.lifecycle.viewModelScope
+import com.grigorev.rickandmorty.db.EpisodesDb
+import com.grigorev.rickandmorty.repository.EpisodesRepositoryImpl
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.flow.map
+import kotlinx.coroutines.launch
 
-class EpisodesViewModel : ViewModel() {
+class EpisodesViewModel(application: Application) : AndroidViewModel(application) {
+    private val repository = EpisodesRepositoryImpl(EpisodesDb.getInstance(application).episodesDao())
+    val data : LiveData<EpisodesModel> = repository.data
+        .map { EpisodesModel(it, it.isEmpty()) }
+        .asLiveData(Dispatchers.Default)
 
-    private val _text = MutableLiveData<String>().apply {
-        value = "This is episodes Fragment"
+    init {
+        loadEpisodes(1)
     }
-    val text: LiveData<String> = _text
+
+    fun loadEpisodes(page: Int) = viewModelScope.launch {
+        try {
+            repository.getAll(page)
+        } catch (e: Exception) {
+            throw e
+        }
+    }
 }

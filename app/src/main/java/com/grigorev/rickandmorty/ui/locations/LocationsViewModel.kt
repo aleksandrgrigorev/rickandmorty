@@ -1,13 +1,31 @@
 package com.grigorev.rickandmorty.ui.locations
 
+import android.app.Application
+import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.ViewModel
+import androidx.lifecycle.asLiveData
+import androidx.lifecycle.viewModelScope
+import com.grigorev.rickandmorty.db.LocationsDb
+import com.grigorev.rickandmorty.repository.LocationsRepositoryImpl
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.flow.map
+import kotlinx.coroutines.launch
 
-class LocationsViewModel : ViewModel() {
+class LocationsViewModel(application: Application) : AndroidViewModel(application) {
+    private val repository = LocationsRepositoryImpl(LocationsDb.getInstance(application).locationsDao())
+    val data : LiveData<LocationsModel> = repository.data
+        .map { LocationsModel(it, it.isEmpty()) }
+        .asLiveData(Dispatchers.Default)
 
-    private val _text = MutableLiveData<String>().apply {
-        value = "This is locations Fragment"
+    init {
+        loadLocations(1)
     }
-    val text: LiveData<String> = _text
+
+    fun loadLocations(page: Int) = viewModelScope.launch {
+        try {
+            repository.getAll(page)
+        } catch (e: Exception) {
+            throw e
+        }
+    }
 }

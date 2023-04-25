@@ -2,6 +2,8 @@ package com.grigorev.rickandmorty.api
 
 import com.grigorev.rickandmorty.BuildConfig
 import com.grigorev.rickandmorty.dto.CharactersApiResponse
+import com.grigorev.rickandmorty.dto.EpisodesApiResponse
+import com.grigorev.rickandmorty.dto.LocationsApiResponse
 import retrofit2.Response
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
@@ -11,7 +13,13 @@ import retrofit2.http.Query
 interface Api {
 
     @GET("character")
-    suspend fun getAll(@Query("page") page: Int): Response<CharactersApiResponse>
+    suspend fun getAllCharacters(@Query("page") page: Int): Response<CharactersApiResponse>
+
+    @GET("location")
+    suspend fun getAllLocations(@Query("page") page: Int): Response<LocationsApiResponse>
+
+    @GET("episode")
+    suspend fun getAllEpisodes(@Query("page") page: Int): Response<EpisodesApiResponse>
 
     companion object {
         val apiClient: Api = Retrofit.Builder()

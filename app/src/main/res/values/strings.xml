@@ -8,5 +8,10 @@
     <string name="status">Status: %1$s</string>
     <string name="gender">Gender: %1$s</string>
     <string name="character_image">Character image</string>
+    <string name="dimension">Dimension: %1$s</string>
+    <string name="type">Type: %1$s</string>
+    <string name="episode_number">Episode: %1$s</string>
+    <string name="air_date">Air date: %1$s</string>
+    <string name="episode_name">%1$s</string>
 
 </resources>

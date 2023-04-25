@@ -4,7 +4,6 @@ import androidx.room.Entity
 import androidx.room.PrimaryKey
 import com.grigorev.rickandmorty.dto.Character
 
-
 @Entity
 data class CharacterEntity(
     @PrimaryKey
