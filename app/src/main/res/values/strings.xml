@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">rickandmorty</string>
+    <string name="app_name">RICKipedia</string>
     <string name="title_characters">Characters</string>
     <string name="title_locations">Locations</string>
     <string name="title_episodes">Episodes</string>
@@ -13,5 +13,4 @@
     <string name="episode_number">Episode: %1$s</string>
     <string name="air_date">Air date: %1$s</string>
     <string name="episode_name">%1$s</string>
-
 </resources>
