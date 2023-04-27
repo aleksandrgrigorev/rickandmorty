@@ -12,6 +12,9 @@ interface EpisodesDao {
     @Query("SELECT * FROM EpisodeEntity ORDER BY id ASC")
     fun getAll(): Flow<List<EpisodeEntity>>
 
+    @Query("SELECT * FROM EpisodeEntity WHERE id = :id")
+    fun getEpisodeById(id: Int): Flow<EpisodeEntity>
+
     @Insert(onConflict = REPLACE)
     suspend fun insert(episode: EpisodeEntity)
 

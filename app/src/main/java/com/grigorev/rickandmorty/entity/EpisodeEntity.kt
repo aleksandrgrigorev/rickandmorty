@@ -23,3 +23,5 @@ data class EpisodeEntity(
 fun List<EpisodeEntity>.toDto() = map { it.toDto() }
 
 fun List<Episode>.toEntity() = map { EpisodeEntity.fromDto(it) }
+
+fun Episode.toEntity() = EpisodeEntity.fromDto(Episode(id, name, episode, air_date))

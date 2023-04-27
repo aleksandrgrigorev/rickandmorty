@@ -3,6 +3,7 @@ package com.grigorev.rickandmorty.api
 import com.grigorev.rickandmorty.BuildConfig
 import com.grigorev.rickandmorty.dto.Character
 import com.grigorev.rickandmorty.dto.CharactersApiResponse
+import com.grigorev.rickandmorty.dto.Episode
 import com.grigorev.rickandmorty.dto.EpisodesApiResponse
 import com.grigorev.rickandmorty.dto.LocationsApiResponse
 import retrofit2.Response
@@ -25,6 +26,9 @@ interface Api {
 
     @GET("episode")
     suspend fun getAllEpisodes(@Query("page") page: Int): Response<EpisodesApiResponse>
+
+    @GET("episode/{id}")
+    suspend fun getEpisode(@Path("id") id: Int): Response<Episode>
 
     companion object {
         val apiClient: Api = Retrofit.Builder()

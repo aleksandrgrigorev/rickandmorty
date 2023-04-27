@@ -2,6 +2,8 @@ package com.grigorev.rickandmorty.ui.episodes
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.core.os.bundleOf
+import androidx.navigation.Navigation
 import androidx.recyclerview.widget.RecyclerView
 import com.grigorev.rickandmorty.R
 import com.grigorev.rickandmorty.databinding.EpisodeItemBinding
@@ -31,7 +33,15 @@ class EpisodesAdapter(
         holder.apply {
             name.text = episode.name
             airDate.text = itemView.context.getString(R.string.air_date, episode.air_date)
-            episodeNumber.text = itemView.context.getString(R.string.episode_number, episode.episode)
+            episodeNumber.text =
+                itemView.context.getString(R.string.episode_number, episode.episode)
+
+            val bundle = bundleOf("id" to episode.id)
+            episodeItem.setOnClickListener {
+                Navigation.findNavController(it).navigate(
+                    R.id.action_navigation_episodes_to_episodeDetailsFragment, bundle
+                )
+            }
         }
     }
 

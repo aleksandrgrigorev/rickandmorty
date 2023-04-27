@@ -25,10 +25,19 @@
         android:id="@+id/navigation_episodes"
         android:name="com.grigorev.rickandmorty.ui.episodes.EpisodesFragment"
         android:label="@string/title_episodes"
-        tools:layout="@layout/fragment_episodes" />
+        tools:layout="@layout/fragment_episodes" >
+        <action
+            android:id="@+id/action_navigation_episodes_to_episodeDetailsFragment"
+            app:destination="@id/episodeDetailsFragment" />
+    </fragment>
     <fragment
         android:id="@+id/characterDetailsFragment"
         android:name="com.grigorev.rickandmorty.ui.character_details.CharacterDetailsFragment"
         android:label="@string/fragment_character_details"
         tools:layout="@layout/fragment_character_details" />
+    <fragment
+        android:id="@+id/episodeDetailsFragment"
+        android:name="com.grigorev.rickandmorty.ui.episode_details.EpisodeDetailsFragment"
+        android:label="@string/fragment_episode_details"
+        tools:layout="@layout/fragment_episode_details" />
 </navigation>

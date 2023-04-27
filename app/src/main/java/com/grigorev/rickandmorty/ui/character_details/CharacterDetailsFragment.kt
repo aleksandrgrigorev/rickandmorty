@@ -40,7 +40,6 @@ class CharacterDetailsFragment : Fragment() {
                         .load(it.image)
                         .into(image)
 
-
                 }
             }
         }
