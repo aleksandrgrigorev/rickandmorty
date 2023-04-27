@@ -3,8 +3,8 @@ package com.grigorev.rickandmorty.repository
 import com.grigorev.rickandmorty.dto.Character
 import kotlinx.coroutines.flow.Flow
 
-interface CharactersRepository {
-    val flow: Flow<List<Character>>
+interface CharacterDetailsRepository {
+    val flow: Flow<Character>
 
-    suspend fun getAll(page: Int)
+    suspend fun getCharacterById(id: Int)
 }

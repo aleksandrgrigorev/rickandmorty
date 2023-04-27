@@ -22,8 +22,8 @@ class LocationsFragment : Fragment() {
         val binding = FragmentLocationsBinding.inflate(inflater, container, false)
 
         lifecycleScope.launch {
-            locationsViewModel.data.observe(viewLifecycleOwner) {
-                val adapter = LocationsAdapter(it.locations)
+            locationsViewModel.flow.collect {
+                val adapter = LocationsAdapter(it)
                 binding.locationsList.adapter = adapter
             }
         }

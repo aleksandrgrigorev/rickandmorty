@@ -2,24 +2,25 @@ package com.grigorev.rickandmorty.ui.characters
 
 import android.app.Application
 import androidx.lifecycle.AndroidViewModel
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.asLiveData
 import androidx.lifecycle.viewModelScope
 import com.grigorev.rickandmorty.db.CharactersDb
+import com.grigorev.rickandmorty.dto.Character
 import com.grigorev.rickandmorty.repository.CharactersRepositoryImpl
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.flow.map
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.flowOn
 import kotlinx.coroutines.launch
+
+const val INITIAL_PAGE = 1
 
 class CharactersViewModel(application: Application) : AndroidViewModel(application) {
 
     private val repository = CharactersRepositoryImpl(CharactersDb.getInstance(application).charactersDao())
-    val data : LiveData<CharactersModel> = repository.data
-        .map { CharactersModel(it, it.isEmpty()) }
-        .asLiveData(Dispatchers.Default)
+    val flow : Flow<List<Character>> = repository.flow
+        .flowOn(Dispatchers.Default)
 
     init {
-        loadCharacters(1)
+        loadCharacters(INITIAL_PAGE)
     }
 
     fun loadCharacters(page: Int) = viewModelScope.launch {

@@ -3,6 +3,7 @@
     <string name="title_characters">Characters</string>
     <string name="title_locations">Locations</string>
     <string name="title_episodes">Episodes</string>
+    <string name="fragment_character_details">Character details</string>
     <string name="name">Name: %1$s</string>
     <string name="species">Species: %1$s</string>
     <string name="status">Status: %1$s</string>
@@ -13,4 +14,6 @@
     <string name="episode_number">Episode: %1$s</string>
     <string name="air_date">Air date: %1$s</string>
     <string name="episode_name">%1$s</string>
+    <string name="origin">Origin: %1$s</string>
+    <string name="location">Location: %1$s</string>
 </resources>

@@ -11,7 +11,7 @@ import kotlinx.coroutines.flow.map
 
 class LocationsRepositoryImpl(private val dao: LocationsDao) : LocationsRepository {
 
-    override val data = dao.getAll()
+    override val flow = dao.getAll()
         .map { it.toDto() }
         .flowOn(Dispatchers.Default)
 

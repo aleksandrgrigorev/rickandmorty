@@ -9,7 +9,11 @@
         android:id="@+id/navigation_characters"
         android:name="com.grigorev.rickandmorty.ui.characters.CharactersFragment"
         android:label="@string/title_characters"
-        tools:layout="@layout/fragment_characters" />
+        tools:layout="@layout/fragment_characters" >
+        <action
+            android:id="@+id/action_navigation_characters_to_characterDetailsFragment"
+            app:destination="@id/characterDetailsFragment" />
+    </fragment>
 
     <fragment
         android:id="@+id/navigation_locations"
@@ -22,4 +26,9 @@
         android:name="com.grigorev.rickandmorty.ui.episodes.EpisodesFragment"
         android:label="@string/title_episodes"
         tools:layout="@layout/fragment_episodes" />
+    <fragment
+        android:id="@+id/characterDetailsFragment"
+        android:name="com.grigorev.rickandmorty.ui.character_details.CharacterDetailsFragment"
+        android:label="@string/fragment_character_details"
+        tools:layout="@layout/fragment_character_details" />
 </navigation>

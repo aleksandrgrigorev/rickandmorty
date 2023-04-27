@@ -12,6 +12,9 @@ interface CharactersDao {
     @Query("SELECT * FROM CharacterEntity ORDER BY id ASC")
     fun getAll(): Flow<List<CharacterEntity>>
 
+    @Query("SELECT * FROM CharacterEntity WHERE id = :id")
+    fun getCharacterById(id: Int): Flow<CharacterEntity>
+
     @Insert(onConflict = REPLACE)
     suspend fun insert(character: CharacterEntity)
 

@@ -22,8 +22,8 @@ class CharactersFragment : Fragment() {
         val binding = FragmentCharactersBinding.inflate(inflater, container, false)
 
         lifecycleScope.launch {
-            charactersViewModel.data.observe(viewLifecycleOwner) {
-                val adapter = context?.let { context -> CharactersAdapter(it.characters, context) }
+            charactersViewModel.flow.collect {
+                val adapter = context?.let { context -> CharactersAdapter(it, context) }
                 binding.charactersList.adapter = adapter
             }
         }

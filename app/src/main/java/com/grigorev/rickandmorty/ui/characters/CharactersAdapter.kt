@@ -3,6 +3,8 @@ package com.grigorev.rickandmorty.ui.characters
 import android.content.Context
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.core.os.bundleOf
+import androidx.navigation.Navigation
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.grigorev.rickandmorty.R
@@ -42,6 +44,14 @@ class CharactersAdapter(
             Glide.with(context)
                 .load(character.image)
                 .into(image)
+
+            val bundle = bundleOf("id" to character.id)
+            characterItem.setOnClickListener {
+                Navigation.findNavController(it).navigate(
+                    R.id.action_navigation_characters_to_characterDetailsFragment, bundle
+                )
+
+            }
         }
     }
 

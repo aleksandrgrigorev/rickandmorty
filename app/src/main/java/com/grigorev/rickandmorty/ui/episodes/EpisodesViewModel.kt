@@ -2,23 +2,23 @@ package com.grigorev.rickandmorty.ui.episodes
 
 import android.app.Application
 import androidx.lifecycle.AndroidViewModel
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.asLiveData
 import androidx.lifecycle.viewModelScope
 import com.grigorev.rickandmorty.db.EpisodesDb
+import com.grigorev.rickandmorty.dto.Episode
 import com.grigorev.rickandmorty.repository.EpisodesRepositoryImpl
+import com.grigorev.rickandmorty.ui.characters.INITIAL_PAGE
 import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.flow.map
+import kotlinx.coroutines.flow.Flow
+import kotlinx.coroutines.flow.flowOn
 import kotlinx.coroutines.launch
 
 class EpisodesViewModel(application: Application) : AndroidViewModel(application) {
     private val repository = EpisodesRepositoryImpl(EpisodesDb.getInstance(application).episodesDao())
-    val data : LiveData<EpisodesModel> = repository.data
-        .map { EpisodesModel(it, it.isEmpty()) }
-        .asLiveData(Dispatchers.Default)
+    val flow : Flow<List<Episode>> = repository.flow
+        .flowOn(Dispatchers.Default)
 
     init {
-        loadEpisodes(1)
+        loadEpisodes(INITIAL_PAGE)
     }
 
     fun loadEpisodes(page: Int) = viewModelScope.launch {
