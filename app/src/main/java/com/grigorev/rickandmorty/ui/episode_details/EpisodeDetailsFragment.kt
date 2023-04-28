@@ -26,10 +26,9 @@ class EpisodeDetailsFragment : Fragment() {
             episodeViewModel.loadEpisodeById(bundleId)
             episodeViewModel.flow.collect {
                 binding.apply {
-                    episodeDetails.name.text = it.name
-                    episodeDetails.airDate.text = getString(R.string.air_date, it.air_date)
-                    episodeDetails.episodeNumber.text =
-                        getString(R.string.episode_number, it.episode)
+                    name.text = it.name
+                    airDate.text = getString(R.string.air_date, it.air_date)
+                    episodeNumber.text = getString(R.string.episode_number, it.episode)
                 }
             }
         }

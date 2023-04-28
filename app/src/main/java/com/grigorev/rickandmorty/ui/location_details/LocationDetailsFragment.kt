@@ -27,9 +27,9 @@ class LocationDetailsFragment : Fragment() {
             locationViewModel.loadLocationById(bundleId)
             locationViewModel.flow.collect {
                 binding.apply {
-                    locationDetails.name.text = it.name
-                    locationDetails.dimension.text = getString(R.string.dimension, it.dimension)
-                    locationDetails.type.text = getString(R.string.type, it.type)
+                    name.text = it.name
+                    dimension.text = getString(R.string.dimension, it.dimension)
+                    type.text = getString(R.string.type, it.type)
                 }
             }
         }

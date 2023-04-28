@@ -17,108 +17,122 @@
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="wrap_content">
 
             <ImageView
                 android:id="@+id/image"
-                android:layout_width="150dp"
-                android:layout_height="150dp"
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
                 android:contentDescription="@string/character_image"
-
-                android:padding="@dimen/common_padding"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="@id/avatarGuideline"
+                android:paddingTop="@dimen/common_padding"
+                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 tools:src="@mipmap/ic_launcher" />
 
             <androidx.constraintlayout.widget.Guideline
-                android:id="@+id/avatarGuideline"
+                android:id="@+id/textStartGuideline"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
                 android:orientation="vertical"
-                app:layout_constraintGuide_percent="0.4" />
+                app:layout_constraintGuide_percent="0.05" />
 
             <TextView
                 android:id="@+id/name"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
+                android:gravity="center"
                 android:paddingTop="@dimen/common_padding"
                 android:text="@string/name"
                 android:textColor="?android:textColorPrimary"
-                android:textSize="16sp"
+                android:textSize="20sp"
                 android:textStyle="bold"
                 app:layout_constraintEnd_toStartOf="@id/textEndGuideline"
-                app:layout_constraintStart_toEndOf="@id/avatarGuideline"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintStart_toEndOf="@id/textStartGuideline"
+                app:layout_constraintTop_toBottomOf="@id/image" />
 
             <TextView
                 android:id="@+id/species"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:ellipsize="end"
+                android:gravity="center"
                 android:singleLine="true"
                 android:text="@string/species"
                 android:textColor="?android:textColorPrimary"
                 app:layout_constrainedWidth="true"
                 app:layout_constraintBottom_toTopOf="@id/gender"
-                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintEnd_toStartOf="@id/textEndGuideline"
-                app:layout_constraintStart_toEndOf="@id/avatarGuideline"
+                app:layout_constraintStart_toEndOf="@id/textStartGuideline"
                 app:layout_constraintTop_toBottomOf="@id/name" />
 
             <TextView
                 android:id="@+id/gender"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
+                android:gravity="center"
                 android:text="@string/gender"
                 android:textColor="?android:textColorPrimary"
                 app:layout_constrainedWidth="true"
                 app:layout_constraintBottom_toTopOf="@id/status"
-                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintEnd_toStartOf="@id/textEndGuideline"
-                app:layout_constraintStart_toEndOf="@id/avatarGuideline"
+                app:layout_constraintStart_toEndOf="@id/textStartGuideline"
                 app:layout_constraintTop_toBottomOf="@id/species" />
 
             <TextView
                 android:id="@+id/status"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
+                android:gravity="center"
                 android:text="@string/status"
                 android:textColor="?android:textColorPrimary"
                 app:layout_constrainedWidth="true"
                 app:layout_constraintBottom_toTopOf="@id/origin"
-                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintEnd_toStartOf="@id/textEndGuideline"
-                app:layout_constraintStart_toEndOf="@id/avatarGuideline"
+                app:layout_constraintStart_toEndOf="@id/textStartGuideline"
                 app:layout_constraintTop_toBottomOf="@id/gender" />
 
             <TextView
                 android:id="@+id/origin"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
+                android:gravity="center"
                 android:text="@string/origin"
                 android:textColor="?android:textColorPrimary"
                 app:layout_constrainedWidth="true"
                 app:layout_constraintBottom_toTopOf="@id/location"
-                app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintEnd_toStartOf="@id/textEndGuideline"
-                app:layout_constraintStart_toEndOf="@id/avatarGuideline"
+                app:layout_constraintStart_toEndOf="@id/textStartGuideline"
                 app:layout_constraintTop_toBottomOf="@id/status" />
 
             <TextView
                 android:id="@+id/location"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:paddingBottom="@dimen/common_padding"
+                android:gravity="center"
                 android:text="@string/location"
                 android:textColor="?android:textColorPrimary"
                 app:layout_constrainedWidth="true"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintBottom_toTopOf="@id/appearsIn"
                 app:layout_constraintEnd_toStartOf="@id/textEndGuideline"
-                app:layout_constraintStart_toEndOf="@id/avatarGuideline"
+                app:layout_constraintStart_toEndOf="@id/textStartGuideline"
                 app:layout_constraintTop_toBottomOf="@id/origin" />
+
+            <TextView
+                android:id="@+id/appearsIn"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:padding="@dimen/common_padding"
+                android:paddingVertical="@dimen/common_padding"
+                android:text="@string/appears_in"
+                android:textColor="?android:textColorPrimary"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@id/textEndGuideline"
+                app:layout_constraintStart_toEndOf="@id/textStartGuideline"
+                app:layout_constraintTop_toBottomOf="@id/location" />
 
             <androidx.constraintlayout.widget.Guideline
                 android:id="@+id/textEndGuideline"
@@ -131,8 +145,11 @@
 
     </androidx.cardview.widget.CardView>
 
-    <include
-        android:id="@+id/characterEpisodes"
-        layout="@layout/fragment_episodes" />
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/characterEpisodesList"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+        tools:listitem="@layout/episode_item" />
 
 </LinearLayout>

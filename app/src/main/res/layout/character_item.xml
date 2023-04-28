@@ -23,13 +23,13 @@
             android:contentDescription="@string/character_image"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintEnd_toEndOf="@id/avatarGuideline"
+            app:layout_constraintEnd_toEndOf="@id/textStartGuideline"
             android:layout_marginEnd="@dimen/avatar_end_margin"
             app:layout_constraintBottom_toBottomOf="parent"
             tools:src="@mipmap/ic_launcher" />
 
         <androidx.constraintlayout.widget.Guideline
-            android:id="@+id/avatarGuideline"
+            android:id="@+id/textStartGuideline"
             android:orientation="vertical"
             android:layout_width="0dp"
             android:layout_height="0dp"
@@ -46,7 +46,7 @@
             android:text="@string/name"
             android:textColor="?android:textColorPrimary"
             android:textStyle="bold"
-            app:layout_constraintStart_toEndOf="@id/avatarGuideline"
+            app:layout_constraintStart_toEndOf="@id/textStartGuideline"
             app:layout_constraintTop_toTopOf="parent"
             android:layout_marginEnd="@dimen/text_ellipsize_guideline"/>
 
@@ -60,7 +60,7 @@
             android:textColor="?android:textColorPrimary"
             app:layout_constrainedWidth="true"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@id/avatarGuideline"
+            app:layout_constraintStart_toEndOf="@id/textStartGuideline"
             app:layout_constraintTop_toBottomOf="@id/name" />
 
         <TextView
@@ -71,7 +71,7 @@
 
             app:layout_constrainedWidth="true"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@id/avatarGuideline"
+            app:layout_constraintStart_toEndOf="@id/textStartGuideline"
             app:layout_constraintTop_toBottomOf="@id/species" />
 
         <TextView
@@ -82,7 +82,7 @@
             android:textColor="?android:textColorPrimary"
             app:layout_constrainedWidth="true"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toEndOf="@id/avatarGuideline"
+            app:layout_constraintStart_toEndOf="@id/textStartGuideline"
             app:layout_constraintTop_toBottomOf="@id/gender" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
