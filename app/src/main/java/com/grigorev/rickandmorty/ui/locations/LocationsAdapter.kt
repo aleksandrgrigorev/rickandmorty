@@ -2,6 +2,8 @@ package com.grigorev.rickandmorty.ui.locations
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.core.os.bundleOf
+import androidx.navigation.Navigation
 import androidx.recyclerview.widget.RecyclerView
 import com.grigorev.rickandmorty.R
 import com.grigorev.rickandmorty.databinding.LocationItemBinding
@@ -32,6 +34,13 @@ class LocationsAdapter(
             name.text = itemView.context.getString(R.string.name, location.name)
             dimension.text = itemView.context.getString(R.string.dimension, location.dimension)
             type.text = itemView.context.getString(R.string.type, location.type)
+
+            val bundle = bundleOf("id" to location.id)
+            locationItem.setOnClickListener {
+                Navigation.findNavController(it).navigate(
+                    R.id.action_navigation_locations_to_locationDetailsFragment, bundle
+                )
+            }
         }
     }
 

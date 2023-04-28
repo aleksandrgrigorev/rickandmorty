@@ -17,4 +17,5 @@
     <string name="origin">Origin: %1$s</string>
     <string name="location">Location: %1$s</string>
     <string name="fragment_episode_details">Episode details</string>
+    <string name="fragment_location_details">Location details</string>
 </resources>

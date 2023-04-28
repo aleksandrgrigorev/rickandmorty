@@ -5,6 +5,7 @@ import com.grigorev.rickandmorty.dto.Character
 import com.grigorev.rickandmorty.dto.CharactersApiResponse
 import com.grigorev.rickandmorty.dto.Episode
 import com.grigorev.rickandmorty.dto.EpisodesApiResponse
+import com.grigorev.rickandmorty.dto.Location
 import com.grigorev.rickandmorty.dto.LocationsApiResponse
 import retrofit2.Response
 import retrofit2.Retrofit
@@ -23,6 +24,9 @@ interface Api {
 
     @GET("location")
     suspend fun getAllLocations(@Query("page") page: Int): Response<LocationsApiResponse>
+
+    @GET("location/{id}")
+    suspend fun getLocation(@Path("id") id: Int): Response<Location>
 
     @GET("episode")
     suspend fun getAllEpisodes(@Query("page") page: Int): Response<EpisodesApiResponse>

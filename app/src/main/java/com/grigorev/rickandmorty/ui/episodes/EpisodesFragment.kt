@@ -12,7 +12,7 @@ import kotlinx.coroutines.launch
 
 class EpisodesFragment : Fragment() {
 
-    private val locationsViewModel: EpisodesViewModel by activityViewModels()
+    private val episodesViewModel: EpisodesViewModel by activityViewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -22,7 +22,7 @@ class EpisodesFragment : Fragment() {
         val binding = FragmentEpisodesBinding.inflate(inflater, container, false)
 
         lifecycleScope.launch {
-            locationsViewModel.flow.collect {
+            episodesViewModel.flow.collect {
                 val adapter = EpisodesAdapter(it)
                 binding.episodesList.adapter = adapter
             }

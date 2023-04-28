@@ -12,6 +12,9 @@ interface LocationsDao {
     @Query("SELECT * FROM LocationEntity ORDER BY id ASC")
     fun getAll(): Flow<List<LocationEntity>>
 
+    @Query("SELECT * FROM LocationEntity WHERE id = :id")
+    fun getLocationById(id: Int): Flow<LocationEntity>
+
     @Insert(onConflict = REPLACE)
     suspend fun insert(location: LocationEntity)
 

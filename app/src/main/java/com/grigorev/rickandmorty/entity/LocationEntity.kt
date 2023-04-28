@@ -23,3 +23,5 @@ data class LocationEntity(
 fun List<LocationEntity>.toDto() = map { it.toDto() }
 
 fun List<Location>.toEntity() = map { LocationEntity.fromDto(it) }
+
+fun Location.toEntity() = LocationEntity.fromDto(Location(id, name, type, dimension))
