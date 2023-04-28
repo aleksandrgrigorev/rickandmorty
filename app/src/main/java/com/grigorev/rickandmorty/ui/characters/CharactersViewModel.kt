@@ -3,6 +3,7 @@ package com.grigorev.rickandmorty.ui.characters
 import android.app.Application
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.viewModelScope
+import com.grigorev.rickandmorty.INITIAL_PAGE
 import com.grigorev.rickandmorty.db.CharactersDb
 import com.grigorev.rickandmorty.dto.Character
 import com.grigorev.rickandmorty.repository.CharactersRepositoryImpl
@@ -10,8 +11,6 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flowOn
 import kotlinx.coroutines.launch
-
-const val INITIAL_PAGE = 1
 
 class CharactersViewModel(application: Application) : AndroidViewModel(application) {
 

@@ -3,10 +3,10 @@ package com.grigorev.rickandmorty.ui.locations
 import android.app.Application
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.viewModelScope
+import com.grigorev.rickandmorty.INITIAL_PAGE
 import com.grigorev.rickandmorty.db.LocationsDb
 import com.grigorev.rickandmorty.dto.Location
 import com.grigorev.rickandmorty.repository.LocationsRepositoryImpl
-import com.grigorev.rickandmorty.ui.characters.INITIAL_PAGE
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flowOn

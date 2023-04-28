@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.lifecycleScope
+import com.grigorev.rickandmorty.INITIAL_PAGE
 import com.grigorev.rickandmorty.databinding.FragmentEpisodesBinding
 import kotlinx.coroutines.launch
 
@@ -20,6 +21,11 @@ class EpisodesFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         val binding = FragmentEpisodesBinding.inflate(inflater, container, false)
+
+        binding.swipeRefreshLayout.setOnRefreshListener {
+            episodesViewModel.loadEpisodes(INITIAL_PAGE)
+            binding.swipeRefreshLayout.isRefreshing = false
+        }
 
         lifecycleScope.launch {
             episodesViewModel.flow.collect {

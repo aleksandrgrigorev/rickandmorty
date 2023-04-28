@@ -10,6 +10,7 @@ import androidx.navigation.ui.setupWithNavController
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.grigorev.rickandmorty.databinding.ActivityMainBinding
 
+const val INITIAL_PAGE = 1
 
 class MainActivity : AppCompatActivity() {
 
