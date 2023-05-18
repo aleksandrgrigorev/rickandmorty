@@ -4,39 +4,35 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.ViewModelProvider
+import androidx.fragment.app.activityViewModels
+import androidx.lifecycle.lifecycleScope
+import com.grigorev.rickandmorty.INITIAL_PAGE
 import com.grigorev.rickandmorty.databinding.FragmentEpisodesBinding
+import kotlinx.coroutines.launch
 
 class EpisodesFragment : Fragment() {
 
-    private var _binding: FragmentEpisodesBinding? = null
-
-    // This property is only valid between onCreateView and
-    // onDestroyView.
-    private val binding get() = _binding!!
+    private val episodesViewModel: EpisodesViewModel by activityViewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        val episodesViewModel =
-            ViewModelProvider(this).get(EpisodesViewModel::class.java)
+        val binding = FragmentEpisodesBinding.inflate(inflater, container, false)
 
-        _binding = FragmentEpisodesBinding.inflate(inflater, container, false)
-        val root: View = binding.root
-
-        val textView: TextView = binding.textNotifications
-        episodesViewModel.text.observe(viewLifecycleOwner) {
-            textView.text = it
+        binding.swipeRefreshLayout.setOnRefreshListener {
+            episodesViewModel.loadEpisodes(INITIAL_PAGE)
+            binding.swipeRefreshLayout.isRefreshing = false
         }
-        return root
-    }
 
-    override fun onDestroyView() {
-        super.onDestroyView()
-        _binding = null
+        lifecycleScope.launch {
+            episodesViewModel.flow.collect {
+                val adapter = EpisodesAdapter(it)
+                binding.episodesList.adapter = adapter
+            }
+        }
+        return binding.root
     }
 }

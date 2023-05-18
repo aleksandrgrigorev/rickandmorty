@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:clickable="true"
+    android:focusable="true"
+    android:orientation="vertical"
+    tools:context=".ui.location_details.LocationDetailsFragment">
+
+    <androidx.cardview.widget.CardView
+        android:id="@+id/locationDetails"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:cardElevation="16dp">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/textStartGuideline"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:orientation="vertical"
+                app:layout_constraintGuide_percent="0.05" />
+
+            <TextView
+                android:id="@+id/name"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:paddingTop="@dimen/common_padding"
+                android:text="@string/name"
+                android:textColor="?android:textColorPrimary"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                app:layout_constraintEnd_toStartOf="@id/textEndGuideline"
+                app:layout_constraintStart_toEndOf="@id/textStartGuideline"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/dimension"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:ellipsize="end"
+                android:gravity="center"
+                android:singleLine="true"
+                android:text="@string/dimension"
+                android:textColor="?android:textColorPrimary"
+                app:layout_constrainedWidth="true"
+                app:layout_constraintBottom_toTopOf="@id/type"
+                app:layout_constraintEnd_toStartOf="@id/textEndGuideline"
+                app:layout_constraintStart_toEndOf="@id/textStartGuideline"
+                app:layout_constraintTop_toBottomOf="@id/name" />
+
+            <TextView
+                android:id="@+id/type"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="@string/type"
+                android:textColor="?android:textColorPrimary"
+                app:layout_constrainedWidth="true"
+                app:layout_constraintBottom_toTopOf="@id/inhabited_by"
+                app:layout_constraintEnd_toStartOf="@id/textEndGuideline"
+                app:layout_constraintStart_toEndOf="@id/textStartGuideline"
+                app:layout_constraintTop_toBottomOf="@id/dimension" />
+
+            <TextView
+                android:id="@+id/inhabited_by"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:paddingVertical="@dimen/common_padding"
+                android:text="@string/inhabited_by"
+                android:textColor="?android:textColorPrimary"
+                android:textSize="16sp"
+                android:textStyle="bold"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@id/textEndGuideline"
+                app:layout_constraintStart_toEndOf="@id/textStartGuideline"
+                app:layout_constraintTop_toBottomOf="@id/type" />
+
+            <androidx.constraintlayout.widget.Guideline
+                android:id="@+id/textEndGuideline"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:orientation="vertical"
+                app:layout_constraintGuide_percent="0.95" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.cardview.widget.CardView>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/locationCharactersList"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+        tools:listitem="@layout/character_item" />
+
+</LinearLayout>

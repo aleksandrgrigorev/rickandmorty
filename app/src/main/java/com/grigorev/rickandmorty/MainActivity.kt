@@ -2,19 +2,21 @@ package com.grigorev.rickandmorty
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import androidx.fragment.app.commit
-import androidx.navigation.findNavController
+import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.AppBarConfiguration
+import androidx.navigation.ui.NavigationUI
 import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import com.grigorev.rickandmorty.databinding.ActivityMainBinding
-import com.grigorev.rickandmorty.ui.characters.CharactersFragment
 
+const val INITIAL_PAGE = 1
 
 class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
+    lateinit var hostFragment: NavHostFragment
+    lateinit var appBarConfiguration: AppBarConfiguration
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -24,9 +26,10 @@ class MainActivity : AppCompatActivity() {
 
         val navView: BottomNavigationView = binding.navView
 
-        val navController = findNavController(R.id.nav_host_fragment_activity_main)
+        hostFragment = supportFragmentManager.findFragmentById(R.id.nav_host_fragment_activity_main) as NavHostFragment
+        val navController = hostFragment.navController
 
-        val appBarConfiguration = AppBarConfiguration(
+        appBarConfiguration = AppBarConfiguration(
             setOf(
                 R.id.navigation_characters, R.id.navigation_locations, R.id.navigation_episodes
             )
@@ -34,11 +37,11 @@ class MainActivity : AppCompatActivity() {
 
         setupActionBarWithNavController(navController, appBarConfiguration)
         navView.setupWithNavController(navController)
+        NavigationUI.setupActionBarWithNavController(this@MainActivity, navController)
+    }
 
-        if (savedInstanceState == null) {
-            supportFragmentManager.commit {
-                add(R.id.navigation_characters, CharactersFragment())
-            }
-        }
+    override fun onSupportNavigateUp(): Boolean {
+        return NavigationUI.navigateUp(hostFragment.navController, appBarConfiguration)
+                || super.onSupportNavigateUp()
     }
 }

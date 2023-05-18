@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/navigation"
+    app:startDestination="@+id/navigation_characters">
+
+    <fragment
+        android:id="@+id/navigation_characters"
+        android:name="com.grigorev.rickandmorty.ui.characters.CharactersFragment"
+        android:label="@string/title_characters"
+        tools:layout="@layout/fragment_characters" >
+        <action
+            android:id="@+id/action_navigation_characters_to_characterDetailsFragment"
+            app:destination="@id/characterDetailsFragment"
+            app:enterAnim="@android:anim/fade_in" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/navigation_locations"
+        android:name="com.grigorev.rickandmorty.ui.locations.LocationsFragment"
+        android:label="@string/title_locations"
+        tools:layout="@layout/fragment_locations" >
+        <action
+            android:id="@+id/action_navigation_locations_to_locationDetailsFragment"
+            app:destination="@id/locationDetailsFragment"
+            app:enterAnim="@android:anim/fade_in" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/navigation_episodes"
+        android:name="com.grigorev.rickandmorty.ui.episodes.EpisodesFragment"
+        android:label="@string/title_episodes"
+        tools:layout="@layout/fragment_episodes" >
+        <action
+            android:id="@+id/action_navigation_episodes_to_episodeDetailsFragment"
+            app:destination="@id/episodeDetailsFragment"
+            app:enterAnim="@android:anim/fade_in" />
+    </fragment>
+    <fragment
+        android:id="@+id/characterDetailsFragment"
+        android:name="com.grigorev.rickandmorty.ui.character_details.CharacterDetailsFragment"
+        android:label="@string/fragment_character_details"
+        tools:layout="@layout/fragment_character_details" />
+    <fragment
+        android:id="@+id/episodeDetailsFragment"
+        android:name="com.grigorev.rickandmorty.ui.episode_details.EpisodeDetailsFragment"
+        android:label="@string/fragment_episode_details"
+        tools:layout="@layout/fragment_episode_details" />
+    <fragment
+        android:id="@+id/locationDetailsFragment"
+        android:name="com.grigorev.rickandmorty.ui.location_details.LocationDetailsFragment"
+        android:label="@string/fragment_location_details"
+        tools:layout="@layout/fragment_location_details" />
+</navigation>

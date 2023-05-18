@@ -4,39 +4,36 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.ViewModelProvider
+import androidx.fragment.app.activityViewModels
+import androidx.lifecycle.lifecycleScope
+import com.grigorev.rickandmorty.INITIAL_PAGE
 import com.grigorev.rickandmorty.databinding.FragmentCharactersBinding
+import kotlinx.coroutines.launch
 
 class CharactersFragment : Fragment() {
 
-    private var _binding: FragmentCharactersBinding? = null
-
-    // This property is only valid between onCreateView and
-    // onDestroyView.
-    private val binding get() = _binding!!
+    private val charactersViewModel: CharactersViewModel by activityViewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        val charactersViewModel =
-            ViewModelProvider(this).get(CharactersViewModel::class.java)
+        val binding = FragmentCharactersBinding.inflate(inflater, container, false)
 
-        _binding = FragmentCharactersBinding.inflate(inflater, container, false)
-        val root: View = binding.root
-
-        val textView: TextView = binding.textHome
-        charactersViewModel.text.observe(viewLifecycleOwner) {
-            textView.text = it
+        binding.swipeRefreshLayout.setOnRefreshListener {
+            charactersViewModel.loadCharacters(INITIAL_PAGE)
+            binding.swipeRefreshLayout.isRefreshing = false
         }
-        return root
-    }
 
-    override fun onDestroyView() {
-        super.onDestroyView()
-        _binding = null
+        lifecycleScope.launch {
+            charactersViewModel.flow.collect {
+                val adapter = context?.let { context -> CharactersAdapter(it, context) }
+                binding.charactersList.adapter = adapter
+            }
+        }
+
+        return binding.root
     }
 }
