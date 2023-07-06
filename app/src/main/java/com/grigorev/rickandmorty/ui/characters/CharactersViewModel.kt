@@ -4,7 +4,7 @@ import android.app.Application
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.viewModelScope
 import com.grigorev.rickandmorty.INITIAL_PAGE
-import com.grigorev.rickandmorty.db.CharactersDb
+import com.grigorev.rickandmorty.db.AppDb
 import com.grigorev.rickandmorty.dto.Character
 import com.grigorev.rickandmorty.repository.CharactersRepositoryImpl
 import kotlinx.coroutines.Dispatchers
@@ -14,8 +14,9 @@ import kotlinx.coroutines.launch
 
 class CharactersViewModel(application: Application) : AndroidViewModel(application) {
 
-    private val repository = CharactersRepositoryImpl(CharactersDb.getInstance(application).charactersDao())
-    val flow : Flow<List<Character>> = repository.flow
+    private val repository =
+        CharactersRepositoryImpl(AppDb.getInstance(application).charactersDao())
+    val flow: Flow<List<Character>> = repository.flow
         .flowOn(Dispatchers.Default)
 
     init {

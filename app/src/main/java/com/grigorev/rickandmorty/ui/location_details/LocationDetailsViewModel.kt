@@ -3,7 +3,7 @@ package com.grigorev.rickandmorty.ui.location_details
 import android.app.Application
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.viewModelScope
-import com.grigorev.rickandmorty.db.LocationsDb
+import com.grigorev.rickandmorty.db.AppDb
 import com.grigorev.rickandmorty.dto.Location
 import com.grigorev.rickandmorty.repository.LocationDetailsRepositoryImpl
 import kotlinx.coroutines.Dispatchers
@@ -13,7 +13,7 @@ import kotlinx.coroutines.launch
 
 class LocationDetailsViewModel(application: Application, val id: Int) : AndroidViewModel(application) {
     private val repository =
-        LocationDetailsRepositoryImpl(LocationsDb.getInstance(application).locationsDao(), id)
+        LocationDetailsRepositoryImpl(AppDb.getInstance(application).locationsDao(), id)
     val flow: Flow<Location> = repository.flow
         .flowOn(Dispatchers.Default)
 

@@ -13,7 +13,6 @@ import kotlinx.coroutines.launch
 
 class LocationDetailsFragment : Fragment() {
 
-
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,

@@ -46,6 +46,8 @@ class CharacterDetailsFragment : Fragment() {
             }
         }
 
+
+
         return binding.root
     }
 
